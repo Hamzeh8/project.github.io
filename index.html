@@ -925,6 +925,134 @@
     .modal { padding: 1rem; }
     .form-grid { grid-template-columns: 1fr; }
   }
+
+
+html {
+  font-size: 16px;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+
+.main-content {
+  width: 100%;
+}
+
+
+.section-card {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  min-width: 600px;
+}
+
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+
+#books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  width: 100%;
+}
+
+/* ============================= */
+
+/* ============================= */
+@media (max-width: 1024px) {
+
+  .sidebar {
+    width: 220px;
+  }
+
+  .brand-title {
+    font-size: 2.2rem;
+  }
+
+}
+
+/* ============================= */
+/* ✅ الموبايل */
+/* ============================= */
+@media (max-width: 768px) {
+
+  html {
+    font-size: 14px;
+  }
+
+  .login-wrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .login-cards {
+    width: 100%;
+  }
+
+  .login-card {
+    width: 100%;
+  }
+
+  .sidebar {
+    position: fixed;
+    right: -260px;
+    width: 240px;
+    height: 100vh;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    right: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+/* ============================= */
+
+/* ============================= */
+@media (max-width: 480px) {
+
+  html {
+    font-size: 13px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .data-table {
+    font-size: 0.75rem;
+  }
+
+  .topbar {
+    padding: 0.8rem;
+  }
+
+  .topbar h2 {
+    font-size: 1rem;
+  }
+
+  .brand-title {
+    font-size: 1.8rem;
+  }
+
+}
 </style>
 </head>
 <body>
