@@ -899,7 +899,7 @@
 
       <div class="sidebar-user">
         <div class="sidebar-user-role">مدير النظام</div>
-        <div class="sidebar-user-name">أحمد العبدالله</div>
+        <div class="sidebar-user-name">admin</div>
       </div>
 
       <div class="nav-section">
@@ -1540,12 +1540,6 @@
 let books = [
   { id:1, title:'الخوارزميات وتحليل البيانات', author:'د. خالد العمري', category:'علوم وتقنية', copies:3, available:1, year:2023, emoji:'💻' },
   { id:2, title:'مقدمة في الذكاء الاصطناعي', author:'د. ريم السلطان', category:'علوم وتقنية', copies:2, available:2, year:2024, emoji:'🤖' },
-  { id:3, title:'أساسيات قواعد البيانات', author:'د. سلمى الفهد', category:'علوم وتقنية', copies:4, available:2, year:2022, emoji:'🗄️' },
-  { id:4, title:'الشبكات والأمن المعلوماتي', author:'د. علي الحربي', category:'علوم وتقنية', copies:2, available:0, year:2023, emoji:'🔐' },
-  { id:5, title:'رياضيات متقدمة', author:'د. فاطمة الزهراء', category:'رياضيات', copies:5, available:4, year:2021, emoji:'📐' },
-  { id:6, title:'ألف ليلة وليلة', author:'تراث عربي', category:'أدب وروايات', copies:3, available:3, year:2020, emoji:'🌙' },
-  { id:7, title:'تاريخ الحضارة الإسلامية', author:'د. محمد الزيات', category:'تاريخ وحضارة', copies:2, available:1, year:2022, emoji:'🕌' },
-  { id:8, title:'هياكل البيانات', author:'د. أحمد النجار', category:'علوم وتقنية', copies:3, available:3, year:2023, emoji:'🏗️' },
 ];
 
 let members = [
@@ -1760,15 +1754,6 @@ function saveEdit() {
   showFlash('تم تعديل بيانات الكتاب بنجاح ✅');
 }
 
-// ─── DELETE ───
-function deleteBook(idx) {
-  if(confirm(`هل تريد حذف "${books[idx].title}"؟`)) {
-    books.splice(idx, 1);
-    renderAdminBooks();
-    populateLendSelect();
-  }
-}
-
 // ─── ADD BOOK ───
 function addBook() {
   const title = document.getElementById('book-title').value.trim();
@@ -1835,13 +1820,34 @@ function renderMembers() {
 }
 
 document.addEventListener('click', function(e) {
-  if (e.target.classList.contains('del-member')) {
-    const idx = parseInt(e.target.getAttribute('data-idx'));
+  const btn = e.target.closest('button');
+  if (!btn) return;
+
+  // حذف عضو
+  if (btn.classList.contains('del-member')) {
+    const idx = parseInt(btn.getAttribute('data-idx'));
     if (confirm('هل تريد حذف العضو ' + members[idx].name + '؟')) {
       members.splice(idx, 1);
       renderMembers();
       showFlash('تم حذف العضو بنجاح');
     }
+  }
+
+  // حذف كتاب
+  if (btn.classList.contains('del-book')) {
+    const idx = parseInt(btn.getAttribute('data-idx'));
+    if (confirm('هل تريد حذف كتاب ' + books[idx].title + '؟')) {
+      books.splice(idx, 1);
+      renderAdminBooks();
+      populateLendSelect();
+      showFlash('تم حذف الكتاب بنجاح');
+    }
+  }
+
+  // تعديل كتاب
+  if (btn.classList.contains('edit-book')) {
+    const idx = parseInt(btn.getAttribute('data-idx'));
+    openEdit(idx);
   }
 });
 
