@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مكتبة الجامعة</title>
+<title>مكتبه الجامعه</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1033,7 +1033,7 @@ img, svg {
     grid-template-columns: 1fr 1fr;
   }
 
-
+}
 
 /* ============================= */
 
@@ -1065,6 +1065,344 @@ img, svg {
   }
 
 }
+
+/* === تحسينات التجاوب لجميع الأجهزة - مضافة بواسطة ChatGPT === */
+:root {
+  --page-pad: clamp(0.85rem, 2.4vw, 2rem);
+  --card-pad: clamp(1rem, 2vw, 1.6rem);
+  --radius-responsive: clamp(12px, 1.5vw, 18px);
+}
+
+html {
+  font-size: clamp(14px, 0.45vw + 12.5px, 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+}
+
+.screen.active,
+.app-layout,
+.main-content,
+.content-area {
+  min-width: 0;
+}
+
+.login-wrapper {
+  width: min(100%, 980px);
+  align-items: stretch;
+}
+
+.brand-title {
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+}
+
+.brand-ornament {
+  width: clamp(68px, 11vw, 90px);
+  height: clamp(68px, 11vw, 90px);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.login-card,
+.section-card,
+.stat-card,
+.report-card,
+.book-card,
+.modal {
+  border-radius: var(--radius-responsive);
+}
+
+.sidebar {
+  width: clamp(220px, 22vw, 270px);
+}
+
+.sidebar-brand,
+.nav-item,
+.nav-section-title {
+  padding-inline: clamp(1rem, 1.5vw, 1.4rem);
+}
+
+.topbar {
+  padding: clamp(0.75rem, 1.5vw, 1rem) var(--page-pad);
+  gap: 0.75rem;
+}
+
+.topbar-title {
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+}
+
+.content-area {
+  padding: var(--page-pad);
+}
+
+.section-card {
+  padding: var(--card-pad);
+}
+
+.stats-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+  gap: clamp(0.7rem, 1.4vw, 1rem);
+}
+
+.form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+
+.books-grid,
+#books-grid,
+#search-results,
+#browse-books {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 145px), 1fr));
+  gap: clamp(0.7rem, 1.4vw, 1rem);
+}
+
+.report-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+
+.book-cover {
+  height: clamp(105px, 16vw, 135px);
+}
+
+.stat-value {
+  font-size: clamp(1.45rem, 4vw, 2rem);
+}
+
+.btn,
+.input-field,
+.form-group input,
+.search-wrap input {
+  min-height: 42px;
+}
+
+.data-table {
+  min-width: 640px;
+}
+
+.section-card:has(.data-table) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal {
+  max-height: min(92vh, 760px);
+  overflow-y: auto;
+}
+
+.modal .form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)) !important;
+}
+
+@media (min-width: 1200px) {
+  .content-area {
+    max-width: 1400px;
+    width: 100%;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 992px) {
+  .login-wrapper {
+    max-width: 760px;
+    gap: 1.25rem;
+  }
+
+  .brand-panel {
+    padding: 1.25rem;
+  }
+
+  .sidebar {
+    width: 230px;
+  }
+}
+
+@media (max-width: 768px) {
+  #login-screen {
+    min-height: 100svh;
+    justify-content: flex-start;
+    padding: 1rem;
+  }
+
+  .login-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .brand-panel {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .login-cards {
+    width: 100%;
+  }
+
+  .login-card:hover {
+    transform: none;
+  }
+
+  .app-layout {
+    display: block;
+    min-height: 100svh;
+  }
+
+  .sidebar {
+    position: fixed !important;
+    inset-block: 0;
+    right: -285px !important;
+    width: min(82vw, 270px) !important;
+    height: 100svh;
+    z-index: 1001;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+  }
+
+  .sidebar.open {
+    right: 0 !important;
+  }
+
+  .hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar > div:first-child {
+    min-width: 0;
+  }
+
+  .topbar-title,
+  .topbar-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 72vw;
+  }
+
+  .topbar-actions {
+    display: none;
+  }
+
+  .section-header {
+    align-items: flex-start;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .report-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .books-grid,
+  #books-grid,
+  #search-results,
+  #browse-books {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-header,
+  .section-header,
+  .modal-actions {
+    gap: 0.6rem;
+  }
+
+  .modal-actions {
+    flex-wrap: wrap;
+  }
+
+  .modal-actions .btn {
+    flex: 1 1 120px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .content-area {
+    padding: 0.8rem;
+  }
+
+  .section-card,
+  .login-card,
+  .stat-card,
+  .report-card {
+    padding: 1rem;
+  }
+
+  .stats-grid,
+  .report-grid,
+  .books-grid,
+  #books-grid,
+  #search-results,
+  #browse-books {
+    grid-template-columns: 1fr;
+  }
+
+  .book-card {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    align-items: stretch;
+  }
+
+  .book-cover {
+    height: 100%;
+    min-height: 105px;
+  }
+
+  .book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section-header .btn,
+  .topbar .btn {
+    width: auto;
+  }
+
+  .search-wrap input {
+    padding-block: 0.75rem;
+  }
+
+  .data-table {
+    min-width: 560px;
+  }
+}
+
+@media (max-width: 380px) {
+  html {
+    font-size: 13px;
+  }
+
+  .book-card {
+    grid-template-columns: 82px 1fr;
+  }
+
+  .book-cover {
+    min-height: 92px;
+    font-size: 2rem;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1074,7 +1412,7 @@ img, svg {
   <div class="login-wrapper">
     <div class="brand-panel">
       <div class="brand-ornament">📚</div>
-      <div class="brand-title">مكتبة<br>النور</div>
+      <div class="brand-title">مكتبه<br>الجامعه</div>
       <div class="brand-sub">نظام إدارة المكتبة الرقمي</div>
     </div>
 
@@ -1134,7 +1472,7 @@ img, svg {
       <div class="sidebar-brand">
         <div class="sidebar-logo">📚</div>
         <div>
-          <div class="sidebar-brand-text">مكتبة الجامعة</div>
+          <div class="sidebar-brand-text">مكتبه الجامعه</div>
           <div class="sidebar-brand-sub">لوحة الإدارة</div>
         </div>
       </div>
@@ -1196,7 +1534,7 @@ img, svg {
       <div class="topbar">
         <div>
           <div class="topbar-title" id="admin-page-title">لوحة التحكم</div>
-          <div class="topbar-subtitle" id="admin-page-sub">مرحباً بك في نظام مكتبة الجامعة</div>
+          <div class="topbar-subtitle" id="admin-page-sub">مرحباً بك في نظام مكتبه الجامعه</div>
         </div>
         <div class="topbar-actions">
           <span style="font-size:0.8rem;color:#999;">الإثنين، 11 مايو 2026</span>
@@ -1569,7 +1907,7 @@ img, svg {
       <div class="sidebar-brand">
         <div class="sidebar-logo">📚</div>
         <div>
-          <div class="sidebar-brand-text">مكتبة الجامعة</div>
+          <div class="sidebar-brand-text">مكتبه الجامعه</div>
           <div class="sidebar-brand-sub">بوابة الطالب</div>
         </div>
       </div>
